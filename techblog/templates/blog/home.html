@@ -12,7 +12,7 @@
   <body>
     <div class="container">
         <nav class="navbar navbar-expand-sm navbar-light bg-light">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand" href="{%url 'home' %}">Tech Blog</a>
           <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
               aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -20,13 +20,46 @@
           <div class="collapse navbar-collapse" id="collapsibleNavId">
               <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                   <li class="nav-item active">
-                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                      <a class="nav-link" href="{%url 'home' %}">Home <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item">
                       <a class="nav-link" href="#">Posts</a>
-                  </li>              
+                  </li> 
+                 {% if user.is_authenticated %}  
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Blog </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        <a class="dropdown-item" href="{%url 'createpost' %}" next='blog/home.html'>Create</a> 
+                        <a class="dropdown-item"  next='blog/home.html'>View</a>                
+
+
+                        </div>
+                    </li>
+                  {%endif%}
               </ul>         
           </div>
+          <div>      
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {% if user.is_authenticated %}
+                  Hi {{user.username}}
+                  {%else%}
+                  Profile
+                
+                  {%endif%}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownId">
+                   {% if user.is_authenticated %}
+                  <a class="dropdown-item" href="{%url 'logout' %}">Sign Out</a>
+                  {%else%}
+                   <a class="dropdown-item" href="{%url 'login' %}" next='blog/home.html'>Sign In</a>                
+                  {%endif%}
+                 
+                </div>
+              </li>
+              </ul>
+          </div>         
       </nav>
       <div class="jumbotron">
           <h1 class="display-3">Welcome to Python blog!!</h1>
@@ -35,7 +68,7 @@
 
       {% block block_content %}{% endblock  %}
     </div>
-      
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

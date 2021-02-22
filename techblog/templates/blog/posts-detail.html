@@ -1,0 +1,10 @@
+{% extends 'blog/home.html' %}
+
+{% block block_content %}
+<div class="card">
+    <img class="card-img-top" src="holder.js/100x180/" alt="">
+    <div class="card-body">
+        <p class="card-text">{{post.content | safe}}</p>
+    </div>
+</div>
+{% endblock  %}

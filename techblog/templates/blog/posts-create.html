@@ -1,0 +1,36 @@
+{% extends 'blog/home.html' %}
+
+{% block block_content %}
+
+<form action="" method="Post">
+{% csrf_token %}
+    {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
+    <input type="hidden" name="title" id="" value={{user.pk}}>
+
+
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" name="title" id="" value="{{post.title}}" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="content">Content</label>
+        <textarea type="text" style="height:200px" name="content" id="" class="form-control">{{post.content}}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock  %}

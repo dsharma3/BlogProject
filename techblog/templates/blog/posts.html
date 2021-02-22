@@ -7,11 +7,10 @@
     <img class="card-img-top" src="holder.js/100x180/" alt="">
     <div class="card-body">
         <h4 class="card-title">{{post.title}}</h4>
-        <p class="card-text">{{post.content|slice:"0:500"}}</p>
+        <p class="card-text">{{post.content|slice:"0:500"|safe}}...</p>
+        <a name="" id="" style="width:120px" class="btn btn-primary" href="{%url 'post-detail' post.pk%}" role="button">Read More</a>
     </div>
+
 </div>
 {% endfor %}
-
-
-
 {% endblock  %}
