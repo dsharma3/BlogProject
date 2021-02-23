@@ -10,6 +10,7 @@ class Post(models.Model):
     user = models.ForeignKey("auth.User", on_delete=models.CASCADE, default=1)
     slug = models.SlugField(max_length=300)
     title = models.CharField(max_length=50)
+    approvals = models.BooleanField(default=True)
     content = models.TextField()
 
     def __str__(self):

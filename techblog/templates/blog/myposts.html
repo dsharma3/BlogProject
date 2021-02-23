@@ -1,0 +1,18 @@
+{% extends 'blog/home.html' %}
+
+{% block block_content %}
+
+{% for post in posts %}
+<div class="card" style="margin-top:10px; margin-bottom:10px">
+    <img class="card-img-top" src="holder.js/100x180/" alt="">
+    <div class="card-body">
+        <h4 class="card-title">{{post.title}}</h4>
+        <p class="card-text">{{post.content|slice:"0:500"|safe}}...</p>
+        <a name="" id="" style="width:120px; margin:10px" class="btn btn-primary" href="{%url 'post-detail' post.pk%}" role="button">Read More</a>
+        <a name="" id="" style="width:120px; margin:10px" class="btn btn-primary" href="{%url 'updatepost' post.pk%}" role="button">Edit</a>
+        <a name="" id="" style="width:120px; margin:10px" class="btn btn-primary" href="{%url 'post-detail' post.pk%}" role="button">Delete</a>
+</div>
+
+</div>
+{% endfor %}
+{% endblock  %}
